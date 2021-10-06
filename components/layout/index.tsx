@@ -1,152 +1,59 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import Link from 'next/link';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
-
-import ImageIcon from '@material-ui/icons/Image';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PagesSharpIcon from '@material-ui/icons/PagesSharp';
-import LoginIcon from '@material-ui/icons/InputOutlined';
+import { FaBattleNet, FaEarlybirds } from 'react-icons/fa';
 
 import { rdxGetArticlesCount, useAppSelector } from '@shared/store';
 
-const drawerWidth = 220;
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-    },
-    appBar: {
-        width: `calc(100vw - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    toolbar: {
-        ...theme.mixins.toolbar,
-    },
-    content: {
-        backgroundColor: theme.palette.background.default,
-        padding: theme.spacing(3),
-        paddingTop: theme.spacing(7),
-        width: '100vw',
-    },
-    listItemText: {
-        marginLeft: '-10px',
-    },
-    listItemAvatar: {
-        paddingTop: '0px',
-        paddingBottom: '0px',
-    },
-    badge: {
-        position: 'absolute',
-        right: '25px',
-        top: '25px',
-    },
-}));
-
 export default function Layout({ children }) {
-    const classes = useStyles();
-
     const articlesCount = useAppSelector(rdxGetArticlesCount);
 
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-
-            <AppBar position="fixed" color="default" className={classes.appBar}>
-                <Toolbar>
-                    <Typography variant="h6" noWrap>
-                        Simple Dashboard
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-
-            <Drawer
-                className={classes.drawer}
-                variant="permanent"
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                anchor="left"
-            >
-                <div className={classes.toolbar}>
-                    <ListItem className={classes.listItemAvatar}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <ImageIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText
-                            className={classes.listItemText}
-                            primary="Mostafa Gholami"
-                            secondary="09365895522"
+        <div className="bg-gray-100 text-gray-700">
+            <div className="flex flex-row h-18 text-gray-100 m-2 p-4 rounded-lg bg-purple-800 justify-end">
+                <div className="flex flex-row -my-2">
+                    <div>
+                        <img
+                            className="inline object-cover w-12 h-12 mr-2 rounded-full border-gray-100 border-2"
+                            src="/img/avatar.jpg"
+                            alt="avatar"
                         />
-                    </ListItem>
+                    </div>
+
+                    <div className="mr-2">
+                        <span className="text-sm">Mostafa Gholami</span>
+                        <br />
+                        <span className="text-sm">0936 589 5522</span>
+                    </div>
                 </div>
+            </div>
 
-                <Divider />
-
-                <List>
+            <div className="flex flex-row">
+                <div
+                    style={{ height: 'calc(100vh - 90px)' }}
+                    className="bg-purple-800 h-screen w-64 text-gray-100 p-4 m-2 rounded-lg flex-col"
+                >
                     <Link href="/">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <DashboardIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                                className={classes.listItemText}
-                                primary="Dashboard"
-                            />
-                        </ListItem>
+                        <div className="flex flex-row mb-4 p-2 rounded-lg cursor-pointer hover:bg-gray-600">
+                            <FaBattleNet className="text-2xl" />
+                            <span className="text-md ml-4">Dashboard</span>
+                        </div>
                     </Link>
 
                     <Link href="/articles">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <PagesSharpIcon />
-                            </ListItemIcon>
-                            <ListItemText className={classes.listItemText}>
-                                Articles
-                                <Badge
-                                    className={classes.badge}
-                                    badgeContent={articlesCount}
-                                    color="primary"
-                                />
-                            </ListItemText>
-                        </ListItem>
+                        <div className="flex flex-row mb-4 p-2 rounded-lg cursor-pointer hover:bg-gray-600">
+                            <FaEarlybirds className="text-2xl" />
+                            <span className="text-md ml-4">Articles</span>
+                            <span className="text-md ml-4">
+                                {articlesCount}
+                            </span>
+                        </div>
                     </Link>
+                </div>
 
-                    <Link href="/login">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <LoginIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                                className={classes.listItemText}
-                                primary="Login"
-                            />
-                        </ListItem>
-                    </Link>
-                </List>
-            </Drawer>
-
-            <main className={classes.content}>{children}</main>
+                <div className="px-4 py-2 m-2 rounded-lg w-full">
+                    {children}
+                </div>
+            </div>
         </div>
     );
 }

@@ -7,9 +7,6 @@ import Head from 'next/head';
 import { Provider } from 'react-redux';
 import { store } from '@shared/store';
 
-import { ThemeProvider } from '@material-ui/core/styles';
-import { theme } from '../theme';
-
 import DefaultLayout from '../components/layout';
 import LoginLayout from '../components/layout/login';
 
@@ -34,18 +31,13 @@ export default class MyApp extends App {
                         name="viewport"
                         content="minimum-scale=1, initial-scale=1, width=device-width"
                     />
-                    <meta
-                        name="theme-color"
-                        content={theme.palette.primary.main}
-                    />
+                    <meta name="theme-color" />
                 </Head>
 
                 <Provider store={store}>
-                    <ThemeProvider theme={theme}>
-                        <Layout>
-                            <Component {...pageProps} />
-                        </Layout>
-                    </ThemeProvider>
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
                 </Provider>
             </React.Fragment>
         );
