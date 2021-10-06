@@ -2,35 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import { FaBattleNet, FaEarlybirds } from 'react-icons/fa';
 
-import { rdxGetArticlesCount, useAppSelector } from '@shared/store';
-
 export default function Layout({ children }) {
-    const articlesCount = useAppSelector(rdxGetArticlesCount);
-
     return (
         <div className="bg-gray-100 text-gray-700">
-            <div className="flex flex-row h-18 text-gray-100 m-2 p-4 rounded-lg bg-purple-800 justify-end">
-                <div className="flex flex-row -my-2">
-                    <div>
-                        <img
-                            className="inline object-cover w-12 h-12 mr-2 rounded-full border-gray-100 border-2"
-                            src="/img/avatar.jpg"
-                            alt="avatar"
-                        />
-                    </div>
-
-                    <div className="mr-2">
-                        <span className="text-sm">Mostafa Gholami</span>
-                        <br />
-                        <span className="text-sm">0936 589 5522</span>
-                    </div>
-                </div>
-            </div>
-
             <div className=" flex flex-row">
                 <div
-                    style={{ height: 'calc(100vh - 90px)' }}
-                    className="bg-purple-800 h-screen w-64 text-gray-100 p-4 m-2 rounded-lg flex-col"
+                    style={{ height: 'calc(100vh - 15px)' }}
+                    className="fixed bg-purple-800 h-screen w-64 text-gray-100 p-4 m-2 rounded-lg flex-col"
                 >
                     <Link href="/">
                         <div className="flex flex-row mb-4 p-2 rounded-lg cursor-pointer hover:bg-gray-600">
@@ -43,15 +21,30 @@ export default function Layout({ children }) {
                         <div className="flex flex-row mb-4 p-2 rounded-lg cursor-pointer hover:bg-gray-600">
                             <FaEarlybirds className="text-2xl" />
                             <span className="text-md ml-4">Articles</span>
-                            <span className="text-md ml-4">
-                                {articlesCount}
-                            </span>
                         </div>
                     </Link>
                 </div>
 
-                <div className="px-4 py-2 m-2 rounded-lg w-full">
-                    {children}
+                <div className="px-4 py-2 rounded-lg w-full ml-64">
+                    <div className="flex flex-row h-18 text-gray-100 p-4 rounded-lg bg-purple-800 justify-end">
+                        <div className="flex flex-row -my-2">
+                            <div>
+                                <img
+                                    className="inline object-cover w-12 h-12 mr-2 rounded-full border-gray-100 border-2"
+                                    src="/img/avatar.jpg"
+                                    alt="avatar"
+                                />
+                            </div>
+
+                            <div className="mr-2">
+                                <span className="text-sm">Mostafa Gholami</span>
+                                <br />
+                                <span className="text-sm">0936 589 5522</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-6">{children}</div>
                 </div>
             </div>
         </div>
