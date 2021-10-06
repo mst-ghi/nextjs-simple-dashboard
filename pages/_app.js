@@ -7,9 +7,13 @@ import Head from 'next/head';
 import { Provider } from 'react-redux';
 import { store } from '@shared/store';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 import DefaultLayout from '../components/layout';
 import LoginLayout from '../components/layout/login';
 
+const queryClient = new QueryClient();
 const layouts = {
     default: DefaultLayout,
     login: LoginLayout,
@@ -24,22 +28,25 @@ export default class MyApp extends App {
             ((children) => <>{children}</>);
 
         return (
-            <React.Fragment>
-                <Head>
-                    <title>Simple Dashboard</title>
-                    <meta
-                        name="viewport"
-                        content="minimum-scale=1, initial-scale=1, width=device-width"
-                    />
-                    <meta name="theme-color" />
-                </Head>
+            <QueryClientProvider client={queryClient}>
+                <React.Fragment>
+                    <Head>
+                        <title>Simple Dashboard</title>
+                        <meta
+                            name="viewport"
+                            content="minimum-scale=1, initial-scale=1, width=device-width"
+                        />
+                        <meta name="theme-color" />
+                    </Head>
 
-                <Provider store={store}>
-                    <Layout>
-                        <Component {...pageProps} />
-                    </Layout>
-                </Provider>
-            </React.Fragment>
+                    <Provider store={store}>
+                        <Layout>
+                            <Component {...pageProps} />
+                        </Layout>
+                    </Provider>
+                </React.Fragment>
+                <ReactQueryDevtools />
+            </QueryClientProvider>
         );
     }
 }

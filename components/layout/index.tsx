@@ -27,7 +27,7 @@ export default function Layout({ children }) {
                 </div>
             </div>
 
-            <div className="flex flex-row">
+            <div className=" flex flex-row">
                 <div
                     style={{ height: 'calc(100vh - 90px)' }}
                     className="bg-purple-800 h-screen w-64 text-gray-100 p-4 m-2 rounded-lg flex-col"

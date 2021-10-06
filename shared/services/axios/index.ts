@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const baseURL = process.env.API_BASE_URL || 'https://newsapi.org/v2';
-export const apiKey = `apiKey=${process.env.API_KEY}`;
+export const baseURL = 'http://api.mediastack.com/';
+export const apiKey = `access_key=30b909e0caf8bcd6ef7e4127366117c5`;
 
 export const http = axios.create({
     baseURL,
